@@ -1,8 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
+ * @developer Metrics Ecosystem (ME)
+ * @product Mi Km
+ * @repository https://github.com/Metrics-Ecosystem/mikm.git
  */
 
 import React from 'react';
