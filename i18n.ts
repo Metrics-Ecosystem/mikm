@@ -6,9 +6,9 @@ import reactNativeLanguageDetector from '@os-team/i18next-react-native-language-
 // import fr from './locales/fr.json';
 
 const resources = {
-//   en,
-//   fr,
-  // Add more languages as needed
+    //  en,
+    //  fr,
+    //  languages as needed
 };
 
 i18n
