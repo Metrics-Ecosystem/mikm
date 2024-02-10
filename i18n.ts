@@ -1,24 +1,21 @@
 import i18n from 'i18next';
 import reactNativeLanguageDetector from '@os-team/i18next-react-native-language-detector';
-
-// Import your translation files
-// import en from './locales/en.json';
-// import fr from './locales/fr.json';
+import en from './locales/en.json';
 
 const resources = {
-    //  en,
-    //  fr,
-    //  languages as needed
+    en,
+    // +37 languages
 };
 
 i18n
   .use(reactNativeLanguageDetector)
   .init({
+    compatibilityJSON: 'v3',
     resources,
     detection: {
         order: ['react-native'],
     },
-    fallbackLng: 'en', // Default language
+    fallbackLng: 'en', // default
     interpolation: {
       escapeValue: false,
     },
