@@ -7,7 +7,6 @@
 import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   TextInput,
@@ -20,29 +19,66 @@ import {
 } from 'react-native';
 // import i18n from './i18n' // localisation library
 
-/** Globals */
-const windowHeight = Dimensions.get('window').height * 0.5;
+/** Types */
+type TextStyle = {
+  fontSize: number;
+  fontWeight: string;
+}
 
+type FontParams = {
+  [key: number]: TextStyle
+}
+
+/** Globals */
+const windowHeight = Dimensions.get('window').height;
+const fontParams: FontParams = {
+  14: {fontSize: 17, fontWeight: 'normal'},
+  12: {fontSize: 25, fontWeight: 'normal'},
+  10: {fontSize: 31, fontWeight: 'bold'},
+  8: {fontSize: 41, fontWeight: 'bold'},
+  6: {fontSize: 48, fontWeight: 'bold'},
+  4: {fontSize: 55, fontWeight: 'bold'},
+  2: {fontSize: 62, fontWeight: 'bold'},
+};
+const commonStyles: any = {
+  margins: '25%'
+};
+const arthm = (a: number, unit: number, b: number) => unit ? a+b : a-b;
+
+/** Main component */
 function App(): React.JSX.Element {
-  
-  /** States */
+  /*** States */
   const [miValue, setMi] = useState('1');
   const [kmValue, setKm] = useState('1.62');
-  // const [dynamicStyles, setDynamicStyles]: any = useState(styles.noPoint);
+  const [miFont, setMiFont]: any = useState(fontParams[2]);
+  const [kmFont, setKmFont]: any = useState(fontParams[6]);
   
-  /** Refs */
+  /*** Refs */
   const miInputRef = useRef<TextInput | null>(null);
   const kmInputRef = useRef<TextInput | null>(null);
   
-  /** Functions */
+  /*** Functions */
+  const handleNumLength = (val: string) => {
+    return val.length > 4 ? val.slice(0, 5) + '...' : val;
+  }
+  // const nonEmptyStr = (val: string) => {} - Check input after blurring to make sure there is a value
+
   const kmToMi = (km: any) => {
-    setMi(km / 0.621371 + '');
-    setKm(km + '');
+    const resKm: string = km;
+    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    const resMi: string = handleNumLength(km * 0.621371 + '');
+    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    setKm(resKm);
+    setMi(resMi);
   }
 
   const miToKm = (mi: any) => {
-    setMi(mi);
-    setKm(mi * 0.621371 + '');
+    const resMi: string = mi
+    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    const resKm: string = handleNumLength(mi / 0.621371 + '');
+    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    setMi(resMi);
+    setKm(resKm);
   }
 
   return (
@@ -51,15 +87,12 @@ function App(): React.JSX.Element {
       <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.dynamicWrap}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.background}>
             <View style={styles.container}>
               <TouchableOpacity>
                 <View style={styles.unitArea}>
                 <TextInput
                 ref={miInputRef}
-                style={[styles.unitInput]}
+                style={[styles.unitInput, miFont]}
                 keyboardType='number-pad'
                 value={miValue}
                 onChangeText={miToKm}
@@ -67,46 +100,48 @@ function App(): React.JSX.Element {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity>
-                <View style={styles.unitArea}>
+                <View style={[styles.unitArea, styles.division]}>
                   <TextInput 
                   ref={kmInputRef}
-                  style={[styles.unitInput]}
+                  style={[styles.unitInput, kmFont]}
                   keyboardType='number-pad'
                   value={kmValue}
                   onChangeText={kmToMi} />
                 </View>
               </TouchableOpacity>
+              <View style={styles.labelsContainer}>
+                <Text style={styles.unitLabel}>mi</Text>
+                <Text style={styles.unitLabel}>km</Text>
+              </View>
             </View>
-      </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
+/** Stylesheets */
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: 'black',
-    height: '100%'
+    backgroundColor: '#000000',
+    height: windowHeight,
   },
   dynamicWrap: {
     flex: 1,
     display: 'flex',
-    alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   container: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    height: '100%',
-    position: 'relative',
     display: 'flex',
+    justifyContent: 'center',
     alignContent: 'center',
-    justifyContent: 'center'
+    height: windowHeight,
+    position: 'relative',
   },
   unitArea: {
-    textAlign: 'center',
-    width: '100%',
-    height: windowHeight / 2
+    marginRight: commonStyles.margins,
+    marginLeft: commonStyles.margins,
+    width: 'auto',
+    height: (windowHeight / 6),
   },
   unitInput: {
     flex: 2,
@@ -114,14 +149,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffffff',
     textAlign: 'center',
-    width: 'auto'
   },
-  // point: {
-  //   pointerEvents: 'auto'
-  // },
-  // noPoint: {
-  //   pointerEvents: 'none'
-  // }
+  division: {
+    borderTopWidth: .2,
+    borderTopColor: '#ffffff'
+  },
+  labelsContainer: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '25%',
+    height: windowHeight / 10,
+    right: commonStyles.margins,
+    top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 20),
+  },
+  unitLabel: {
+    color: '#ffffff',
+    fontSize: 17,
+    fontWeight: 'normal',
+    textAlign: 'center'
+  }
 });
 
 export default App;
