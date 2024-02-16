@@ -60,8 +60,7 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumLength = (val: string) => {
     return val.length > 4 ? val.slice(0, 5) + '...' : val;
-  }
-  // const nonEmptyStr = (val: string) => {} - Check input after blurring to make sure there is a value
+  } 
 
   const kmToMi = (km: any) => {
     const resKm: string = km;
@@ -81,6 +80,13 @@ function App(): React.JSX.Element {
     setKm(resKm);
   }
 
+  const nonEmptyStr = (val: string, unit: string) => {
+    // - Check input after blurring to make sure there is a value
+    if (val != '') return;
+    if (unit == 'mi') miToKm('0');
+    if (unit == 'km') kmToMi('0');
+  }
+
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar hidden={true} />
@@ -96,6 +102,7 @@ function App(): React.JSX.Element {
                 keyboardType='number-pad'
                 value={miValue}
                 onChangeText={miToKm}
+                onBlur={() => nonEmptyStr(miValue, 'mi')}
                 />
                 </View>
               </TouchableOpacity>
@@ -106,7 +113,9 @@ function App(): React.JSX.Element {
                   style={[styles.unitInput, kmFont]}
                   keyboardType='number-pad'
                   value={kmValue}
-                  onChangeText={kmToMi} />
+                  onChangeText={kmToMi}
+                  onBlur={() => nonEmptyStr(kmValue, 'km')}
+                  />
                 </View>
               </TouchableOpacity>
               <View style={styles.labelsContainer}>
@@ -151,7 +160,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   division: {
-    borderTopWidth: .2,
+    borderTopWidth: .3,
     borderTopColor: '#ffffff'
   },
   labelsContainer: {
