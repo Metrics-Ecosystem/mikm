@@ -59,10 +59,12 @@ function App(): React.JSX.Element {
   
   /*** Functions */
   const handleNumLength = (val: string) => {
+    // - Shorten long strings
     return val.length > 4 ? val.slice(0, 5) + '...' : val;
   } 
 
   const kmToMi = (km: any) => {
+    // - Conversion from kilometres to miles
     const resKm: string = km;
     setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
     const resMi: string = handleNumLength(km * 0.621371 + '');
@@ -72,6 +74,7 @@ function App(): React.JSX.Element {
   }
 
   const miToKm = (mi: any) => {
+    // - Conversion from miles to kilometres
     const resMi: string = mi
     setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
     const resKm: string = handleNumLength(mi / 0.621371 + '');
