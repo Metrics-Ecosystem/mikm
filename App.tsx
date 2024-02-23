@@ -17,6 +17,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 // import i18n from './i18n' // localisation library
 
@@ -53,6 +54,7 @@ function App(): React.JSX.Element {
   const [kmValue, setKm] = useState('1.62');
   const [miFont, setMiFont]: any = useState(fontParams[2]);
   const [kmFont, setKmFont]: any = useState(fontParams[6]);
+  const [timer, setTimer]: any = useState(null);
   
   /*** Refs */
   const miInputRef = useRef<TextInput | null>(null);
@@ -91,14 +93,32 @@ function App(): React.JSX.Element {
     if (unit == 'km') kmToMi('0');
   }
 
+  const handleTap = () => {
+    if (timer) {
+      // function for detecting doubletaps
+    }
+    setTimer(setTimeout(() => {setTimer(null)}, 299));
+  }
+
+  const blurAll = () => Keyboard.dismiss();
+
+  /**
+   * Pseudocode for the tap handler
+   * tap on the input
+   * if there is timer active set the comma into the inserted input - return
+   * set timer for 0.2 sec
+   */
+
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar hidden={true} />
       <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.dynamicWrap}>
-            <View style={styles.container}>
-              <TouchableOpacity>
+          <TouchableOpacity onPress={blurAll}>
+            <View 
+            style={styles.container}>
+              <TouchableOpacity onPress={handleTap}>
                 <View style={styles.unitArea}>
                 <TextInput
                 ref={miInputRef}
@@ -110,7 +130,7 @@ function App(): React.JSX.Element {
                 />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handleTap}>
                 <View style={[styles.unitArea, styles.division]}>
                   <TextInput 
                   ref={kmInputRef}
@@ -133,6 +153,7 @@ function App(): React.JSX.Element {
                 <Text style={styles.unitLabel}>km</Text>
               </View>
             </View>
+          </TouchableOpacity>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
