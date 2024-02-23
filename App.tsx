@@ -16,7 +16,6 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
 // import i18n from './i18n' // localisation library
@@ -94,8 +93,9 @@ function App(): React.JSX.Element {
   }
 
   const handleTap = () => {
+    // - Hanlde doubletap with comma event
     if (timer) {
-      // function for detecting doubletaps
+      // write a comma right down to the input
     }
     setTimer(setTimeout(() => {setTimer(null)}, 299));
   }
@@ -118,7 +118,7 @@ function App(): React.JSX.Element {
           <TouchableOpacity onPress={blurAll}>
             <View 
             style={styles.container}>
-              <TouchableOpacity onPress={handleTap}>
+              <TouchableOpacity>
                 <View style={styles.unitArea}>
                 <TextInput
                 ref={miInputRef}
@@ -126,11 +126,12 @@ function App(): React.JSX.Element {
                 keyboardType='number-pad'
                 value={miValue}
                 onChangeText={miToKm}
+                onPressIn={handleTap}
                 onBlur={() => nonEmptyStr(miValue, 'mi')}
                 />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={handleTap}>
+              <TouchableOpacity>
                 <View style={[styles.unitArea, styles.division]}>
                   <TextInput 
                   ref={kmInputRef}
@@ -138,6 +139,7 @@ function App(): React.JSX.Element {
                   keyboardType='number-pad'
                   value={kmValue}
                   onChangeText={kmToMi}
+                  onPressIn={handleTap}
                   onBlur={() => nonEmptyStr(kmValue, 'km')}
                   />
                 </View>
