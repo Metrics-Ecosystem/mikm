@@ -16,6 +16,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
+  TouchableWithoutFeedback,
 } from 'react-native';
 // import i18n from './i18n' // localisation library
 
@@ -121,6 +122,12 @@ function App(): React.JSX.Element {
                   />
                 </View>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.switchBtn}>
+                <View style={styles.arrowContainer}>
+                  <View style={styles.upArrow}></View>
+                  <View style={styles.downArrow}></View>
+                </View>
+              </TouchableOpacity>
               <View style={styles.labelsContainer}>
                 <Text style={styles.unitLabel}>mi</Text>
                 <Text style={styles.unitLabel}>km</Text>
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
     marginRight: commonStyles.margins,
     marginLeft: commonStyles.margins,
     width: 'auto',
-    height: (windowHeight / 6),
+    height: (windowHeight / 6)
   },
   unitInput: {
     flex: 2,
@@ -161,6 +168,42 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffffff',
     textAlign: 'center',
+  },
+  switchBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '25%',
+    height: 35,
+    backgroundColor: '#000000',
+    borderRadius: 5,
+    marginTop: 10,
+    position: 'absolute',
+  },
+  arrowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  upArrow: {
+    borderTopWidth: 10,
+    borderTopColor: 'white',
+    borderRightWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 10,
+    borderLeftColor: 'transparent',
+    width: 0,
+    height: 0
+  },
+  downArrow: {
+    borderBottomWidth: 10,
+    borderBottomColor: 'white',
+    borderRightWidth: 10,
+    borderRightColor: 'transparent',
+    borderLeftWidth: 10,
+    borderLeftColor: 'transparent',
+    width: 0,
+    height: 0
   },
   division: {
     borderTopWidth: .3,
@@ -170,7 +213,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     display: 'flex',
     justifyContent: 'space-around',
-    width: '25%',
+    width: '12.5%',
     height: windowHeight / 10,
     right: commonStyles.margins,
     top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 20),
@@ -179,7 +222,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 17,
     fontWeight: 'normal',
-    textAlign: 'center'
+    textAlign: 'center',
   }
 });
 
