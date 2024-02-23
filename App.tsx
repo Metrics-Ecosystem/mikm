@@ -49,8 +49,8 @@ const arthm = (a: number, unit: number, b: number) => unit ? a+b : a-b;
 /** Main component */
 function App(): React.JSX.Element {
   /*** States */
-  const [miValue, setMi] = useState('1');
-  const [kmValue, setKm] = useState('1.62');
+  const [miValue, setMi] = useState('0');
+  const [kmValue, setKm] = useState('0');
   const [miFont, setMiFont]: any = useState(fontParams[2]);
   const [kmFont, setKmFont]: any = useState(fontParams[6]);
   const [timer, setTimer]: any = useState(null);
