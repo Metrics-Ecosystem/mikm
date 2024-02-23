@@ -95,19 +95,17 @@ function App(): React.JSX.Element {
   const handleTap = () => {
     // - Hanlde doubletap with comma event
     if (timer) {
-      // write a comma right down to the input
+      // Write a comma
+      return miInputRef.current?.isFocused() ? 
+        miToKm(miValue + '.') : 
+        (kmInputRef.current?.isFocused() ? 
+        kmToMi(kmValue + '.') : 
+        null);
     }
     setTimer(setTimeout(() => {setTimer(null)}, 299));
   }
 
   const blurAll = () => Keyboard.dismiss();
-
-  /**
-   * Pseudocode for the tap handler
-   * tap on the input
-   * if there is timer active set the comma into the inserted input - return
-   * set timer for 0.2 sec
-   */
 
   return (
     <SafeAreaView style={styles.background}>
