@@ -61,7 +61,7 @@ function App(): React.JSX.Element {
   
   /*** Functions */
   const handleNumLength = (val: string) => {
-    // - Shorten long strings
+    // - Shorten long strings !!toComplete
     return val.length > 4 ? val.slice(0, 5) + '...' : val;
   } 
 
@@ -93,13 +93,14 @@ function App(): React.JSX.Element {
   }
 
   const handleTap = () => {
-    // - Hanlde doubletap with comma event
+    // - Hanlde doubletaps with dots
     if (timer) {
-      // Write a comma
+      // Write a dot
+      const dot = '.';
       return miInputRef.current?.isFocused() ? 
-        miToKm(miValue + '.') : 
+        miToKm(miValue + dot) : 
         (kmInputRef.current?.isFocused() ? 
-        kmToMi(kmValue + '.') : 
+        kmToMi(kmValue + dot) : 
         null);
     }
     setTimer(setTimeout(() => {setTimer(null)}, 299));
@@ -142,7 +143,9 @@ function App(): React.JSX.Element {
                   />
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.switchBtn}>
+              <TouchableOpacity 
+              style={styles.switchBtn}
+              >
                 <View style={styles.arrowContainer}>
                   <View style={styles.upArrow}></View>
                   <View style={styles.downArrow}></View>
