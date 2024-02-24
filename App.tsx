@@ -109,8 +109,8 @@ function App(): React.JSX.Element {
   const blurAll = () => Keyboard.dismiss();
 
   const switchValues = () => {
-    // 
-    miToKm(kmValue);
+    // - Switch values between miles and kilometers
+    // miToKm(kmValue);
   }
 
   return (
