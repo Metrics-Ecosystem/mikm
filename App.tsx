@@ -113,6 +113,10 @@ function App(): React.JSX.Element {
     miToKm(kmValue);
   }
 
+  const cleanIfZero = (val: string, unit: string) => {
+    return unit == 'mi' ? (val == '0' ? setMi('') : null) : (val == '0' ? setKm('') : null)
+  }
+
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar hidden={true} />
@@ -132,6 +136,7 @@ function App(): React.JSX.Element {
                 onChangeText={miToKm}
                 onPressIn={handleTap}
                 onBlur={() => nonEmptyStr(miValue, 'mi')}
+                onFocus={() => cleanIfZero(miValue, 'mi')}
                 />
                 </View>
               </TouchableOpacity>
@@ -145,6 +150,7 @@ function App(): React.JSX.Element {
                   onChangeText={kmToMi}
                   onPressIn={handleTap}
                   onBlur={() => nonEmptyStr(kmValue, 'km')}
+                  onFocus={() => cleanIfZero(kmValue, 'km')}
                   />
                 </View>
               </TouchableOpacity>
