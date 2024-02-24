@@ -97,9 +97,9 @@ function App(): React.JSX.Element {
     if (timer) {
       // Write a dot
       const dot = '.';
-      return miInputRef.current?.isFocused() ? 
+      return miInputRef.current?.isFocused() && miValue.indexOf(dot) == -1 ? 
         miToKm(miValue + dot) : 
-        (kmInputRef.current?.isFocused() ? 
+        (kmInputRef.current?.isFocused() && kmValue.indexOf(dot) == -1 ? 
         kmToMi(kmValue + dot) : 
         null);
     }
@@ -107,6 +107,11 @@ function App(): React.JSX.Element {
   }
 
   const blurAll = () => Keyboard.dismiss();
+
+  const switchValues = () => {
+    // 
+    miToKm(kmValue);
+  }
 
   return (
     <SafeAreaView style={styles.background}>
@@ -145,6 +150,7 @@ function App(): React.JSX.Element {
               </TouchableOpacity>
               <TouchableOpacity 
               style={styles.switchBtn}
+              onPress={switchValues}
               >
                 <View style={styles.arrowContainer}>
                   <View style={styles.upArrow}></View>
