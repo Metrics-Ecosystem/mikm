@@ -53,7 +53,6 @@ function App(): React.JSX.Element {
   const [kmValue, setKm]: any = useState('0');
   const [miFont, setMiFont]: any = useState(fontParams[2]);
   const [kmFont, setKmFont]: any = useState(fontParams[6]);
-  const [timer, setTimer]: any = useState(null);
   
   /*** Refs */
   const miInputRef = useRef<TextInput | null>(null);
@@ -62,7 +61,7 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumLength = (val: string) => {
     // - Shorten long strings !!toComplete
-    return Math.round(Number(val)) + '';
+    return val;
   } 
 
   const kmToMi = (km: any) => {
@@ -90,20 +89,6 @@ function App(): React.JSX.Element {
     if (val != '') return;
     if (unit == 'mi') miToKm('0');
     if (unit == 'km') kmToMi('0');
-  }
-
-  const handleTap = () => {
-    // - Hanlde doubletaps with dots
-    if (timer) {
-      // Write a dot
-      const dot = '.';
-      return miInputRef.current?.isFocused() && miValue.indexOf(dot) == -1 ? 
-        miToKm(miValue + dot) : 
-        (kmInputRef.current?.isFocused() && kmValue.indexOf(dot) == -1 ? 
-        kmToMi(kmValue + dot) : 
-        null);
-    }
-    setTimer(setTimeout(() => {setTimer(null)}, 299));
   }
 
   const blurAll = () => Keyboard.dismiss();
@@ -134,7 +119,6 @@ function App(): React.JSX.Element {
                 keyboardType='number-pad'
                 value={miValue}
                 onChangeText={miToKm}
-                onPressIn={handleTap}
                 onBlur={() => nonEmptyStr(miValue, 'mi')}
                 onFocus={() => cleanIfZero(miValue, 'mi')}
                 />
@@ -148,7 +132,6 @@ function App(): React.JSX.Element {
                   keyboardType='number-pad'
                   value={kmValue}
                   onChangeText={kmToMi}
-                  onPressIn={handleTap}
                   onBlur={() => nonEmptyStr(kmValue, 'km')}
                   onFocus={() => cleanIfZero(kmValue, 'km')}
                   />
@@ -163,9 +146,9 @@ function App(): React.JSX.Element {
                   <View style={styles.downArrow}></View>
                 </View>
               </TouchableOpacity>
-              <View style={styles.labelsContainer}>
-                <Text style={styles.unitLabel}>mi</Text>
-                <Text style={styles.unitLabel}>km</Text>
+              <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
+                <Text style={styles.sideLabel}>mi</Text>
+                <Text style={styles.sideLabel}>km</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -249,12 +232,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     display: 'flex',
     justifyContent: 'space-around',
+    top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 20),
+  },
+  unitLabelsContainer: {
     width: '12.5%',
     height: windowHeight / 10,
     right: commonStyles.margins,
-    top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 20),
   },
-  unitLabel: {
+  sideLabel: {
     color: '#ffffff',
     fontSize: 17,
     fontWeight: 'normal',
