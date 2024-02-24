@@ -31,7 +31,7 @@ type FontParams = {
 }
 
 /** Globals */
-const windowHeight = Dimensions.get('window').height;
+const windowHeight: number = Dimensions.get('window').height;
 const fontParams: FontParams = {
   14: {fontSize: 17, fontWeight: 'normal'},
   12: {fontSize: 25, fontWeight: 'normal'},
@@ -49,8 +49,8 @@ const arthm = (a: number, unit: number, b: number) => unit ? a+b : a-b;
 /** Main component */
 function App(): React.JSX.Element {
   /*** States */
-  const [miValue, setMi] = useState('0');
-  const [kmValue, setKm] = useState('0');
+  const [miValue, setMi]: any = useState('0');
+  const [kmValue, setKm]: any = useState('0');
   const [miFont, setMiFont]: any = useState(fontParams[2]);
   const [kmFont, setKmFont]: any = useState(fontParams[6]);
   const [timer, setTimer]: any = useState(null);
@@ -62,7 +62,7 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumLength = (val: string) => {
     // - Shorten long strings !!toComplete
-    return val.length > 4 ? val.slice(0, 5) + '...' : val;
+    return Math.round(Number(val)) + '';
   } 
 
   const kmToMi = (km: any) => {
@@ -110,7 +110,7 @@ function App(): React.JSX.Element {
 
   const switchValues = () => {
     // - Switch values between miles and kilometers
-    // miToKm(kmValue);
+    miToKm(kmValue);
   }
 
   return (
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     fontSize: 62,
     fontWeight: 'bold',
     color: '#ffffff',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   switchBtn: {
     flexDirection: 'row',
