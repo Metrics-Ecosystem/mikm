@@ -116,7 +116,7 @@ function App(): React.JSX.Element {
                 <TextInput
                 ref={miInputRef}
                 style={[styles.unitInput, miFont]}
-                keyboardType='number-pad'
+                keyboardType={'decimal-pad'}
                 value={miValue}
                 onChangeText={miToKm}
                 onBlur={() => nonEmptyStr(miValue, 'mi')}
