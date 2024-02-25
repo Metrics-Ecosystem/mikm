@@ -16,7 +16,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 // import i18n from './i18n' // localisation library
 
@@ -106,10 +106,7 @@ function App(): React.JSX.Element {
 
   const switchVisibilityStatement = () => {
     // - Switch statements of full or shorten length of the results
-    if (showFull) {
-      setShowFull(false);
-      return
-    }
+    if (showFull) return setShowFull(false);
     setShowFull(true);
   }
 
@@ -179,10 +176,10 @@ function App(): React.JSX.Element {
               <TouchableOpacity 
               style={styles.switchBtn}
               onPress={switchVisibilityStatement}
+              activeOpacity={1}
               >
-                <View style={styles.arrowContainer}>
-                  <View style={styles.upArrow}></View>
-                  <View style={styles.downArrow}></View>
+                <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
+                  <View style={styles.pupil}></View>
                 </View>
               </TouchableOpacity>
               <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
@@ -228,7 +225,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   switchBtn: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -236,32 +232,34 @@ const styles = StyleSheet.create({
     height: 35,
     backgroundColor: '#000000',
     borderRadius: 5,
-    marginTop: 10,
     position: 'absolute',
   },
-  arrowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
+  eyeIcon: {
+    width: 33,
+    height: 33,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderTopLeftRadius: 75,
+    borderBottomRightRadius: 75,
+    position: 'relative',
+    transform: [{rotate: '45deg'}]
   },
-  upArrow: {
-    borderTopWidth: 10,
-    borderTopColor: 'white',
-    borderRightWidth: 10,
-    borderRightColor: 'transparent',
-    borderLeftWidth: 10,
-    borderLeftColor: 'transparent',
-    width: 0,
-    height: 0
+  eyeIconOn: {
+    backgroundColor: '#ffffff',
   },
-  downArrow: {
-    borderBottomWidth: 10,
-    borderBottomColor: 'white',
-    borderRightWidth: 10,
-    borderRightColor: 'transparent',
-    borderLeftWidth: 10,
-    borderLeftColor: 'transparent',
-    width: 0,
-    height: 0
+  eyeIconOff: {
+    backgroundColor: '#d9d9d9d9',
+  },
+  pupil: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 50,
+    backgroundColor: '#000',
+    left: 10,
+    top: 10,
   },
   division: {
     borderTopWidth: .3,
