@@ -182,7 +182,7 @@ function App(): React.JSX.Element {
               >
                 <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
                   <View style={styles.pupil}></View>
-                  {/* {!showFull ? <View style={styles.stroked}></View> : null} */}
+                  {!showFull ? <View style={styles.stroked}></View> : null}
                 </View>
               </TouchableOpacity>
               <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
@@ -218,24 +218,27 @@ const styles = StyleSheet.create({
     marginRight: commonStyles.margins,
     marginLeft: commonStyles.margins,
     width: 'auto',
-    height: (windowHeight / 6)
+    height: (windowHeight / 4),
   },
   unitInput: {
-    flex: 2,
+    flex: 1,
     fontSize: 62,
     fontWeight: 'bold',
     color: '#ffffff',
-    textAlign: 'center'
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   switchBtn: {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
     width: '25%',
-    height: 35,
+    height: '7%',
     backgroundColor: '#000000',
     borderRadius: 5,
-    position: 'absolute',
+    position: 'absolute'
   },
   eyeIcon: {
     width: 33,
@@ -251,7 +254,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   eyeIconOff: {
-    backgroundColor: '#d9d9d9d9',
+    backgroundColor: '#b9b9b9b9',
   },
   pupil: {
     position: 'absolute',
@@ -264,14 +267,13 @@ const styles = StyleSheet.create({
     left: 10,
     top: 10,
   },
-  // stroked: {
-  //   width: '100%',
-  //   height: '100%',
-  //   borderWidth: 1,
-  //   borderTopColor: '#ffffff',
-  //   borderRightColor: '#ffffff',
-  //   borderTopRightRadius: 100,
-  // },
+  stroked: {
+    width: '100%',
+    height: '100%',
+    borderWidth: 2,
+    borderTopColor: '#b9b9b9b9',
+    marginTop: '45%'
+  },
   division: {
     borderTopWidth: .3,
     borderTopColor: '#ffffff'
