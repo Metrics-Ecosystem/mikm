@@ -114,7 +114,7 @@ function App(): React.JSX.Element {
   }
 
   const cleanIfZero = (val: string, unit: string) => {
-    // - Enhacne UX via cleaning zero input automatically
+    // - Enhacne UX via hiding zero input automatically
     return (
       unit == 'mi' ? 
         (val == '0' ? (setMi(''), setMiShort('')) : null) : 
