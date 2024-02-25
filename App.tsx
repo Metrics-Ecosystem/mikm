@@ -72,27 +72,29 @@ function App(): React.JSX.Element {
   const kmToMi = (km: any) => {
     // - Conversion from kilometres to miles
     const mi: string = km * 0.621371 + '';
-    setKm(km);
+    const miShort = handleNumForm(mi);
     setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
+    setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
+    setKmFontShort(kmFont);
+    setMiFontShort((fontParams[miShort.length] || fontParams[miShort.length + 1]) || fontParams[14]);
+    setKm(km);
     setKmShort(km);
-    setKmFontShort((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
     setMi(mi);
-    setMiFont((fontParams[miValue.length] || fontParams[miValue.length + 1]) || fontParams[14]);
-    setMiShort(handleNumForm(mi));
-    setMiFontShort((fontParams[miValueShort.length] || fontParams[miValueShort.length + 1]) || fontParams[14]);
+    setMiShort(miShort);
   }
 
   const miToKm = (mi: any) => {
     // - Conversion from miles to kilometres
     const km: string = mi / 0.621371 + '';
-    setMi(mi);
+    const kmShort = handleNumForm(km);
     setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
+    setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
+    setMiFontShort(miFont);
+    setKmFontShort((fontParams[kmShort.length] || fontParams[kmShort.length + 1]) || fontParams[14]);
+    setMi(mi);
     setMiShort(mi);
-    setMiFontShort((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
     setKm(km);
-    setKmFont((fontParams[kmValue.length] || fontParams[kmValue.length + 1]) || fontParams[14]);
-    setKmShort(handleNumForm(km));
-    setKmFontShort((fontParams[kmValueShort.length] || fontParams[kmValueShort.length + 1]) || fontParams[14]);
+    setKmShort(kmShort);
   }
 
   const nonEmptyStr = (val: string, unit: string) => {
@@ -180,6 +182,7 @@ function App(): React.JSX.Element {
               >
                 <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
                   <View style={styles.pupil}></View>
+                  {/* {!showFull ? <View style={styles.stroked}></View> : null} */}
                 </View>
               </TouchableOpacity>
               <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
@@ -261,6 +264,14 @@ const styles = StyleSheet.create({
     left: 10,
     top: 10,
   },
+  // stroked: {
+  //   width: '100%',
+  //   height: '100%',
+  //   borderWidth: 1,
+  //   borderTopColor: '#ffffff',
+  //   borderRightColor: '#ffffff',
+  //   borderTopRightRadius: 100,
+  // },
   division: {
     borderTopWidth: .3,
     borderTopColor: '#ffffff'
