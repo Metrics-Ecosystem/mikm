@@ -66,35 +66,33 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumForm = (val: string) => {
     // - Short long strings !!toComplete
-    return val.slice(0, val.indexOf('.')+2 || val.length-1);
+    return val.slice(0, val.indexOf('.')+3 || val.length-1);
   } 
 
   const kmToMi = (km: any) => {
     // - Conversion from kilometres to miles
-    const resKm: string = km;
-    const resMi: string = handleNumForm(km * 0.621371 + '');
-    setKm(resKm);
-    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
-    setKmShort(handleNumForm(resKm));
-    setKmFontShort((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
-    setMi(resMi);
-    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
-    setMiShort(handleNumForm(resMi));
-    setMiFontShort((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    const mi: string = km * 0.621371 + '';
+    setKm(km);
+    setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
+    setKmShort(km);
+    setKmFontShort((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
+    setMi(mi);
+    setMiFont((fontParams[miValue.length] || fontParams[miValue.length + 1]) || fontParams[14]);
+    setMiShort(handleNumForm(mi));
+    setMiFontShort((fontParams[miValueShort.length] || fontParams[miValueShort.length + 1]) || fontParams[14]);
   }
 
   const miToKm = (mi: any) => {
     // - Conversion from miles to kilometres
-    const resMi: string = mi
-    const resKm: string = handleNumForm(mi / 0.621371 + '');
-    setMi(resMi);
-    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
-    setMiShort(handleNumForm(resMi));
-    setMiFontShort((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
-    setKm(resKm);
-    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
-    setKmShort(handleNumForm(resKm));
-    setKmFontShort((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    const km: string = mi / 0.621371 + '';
+    setMi(mi);
+    setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
+    setMiShort(mi);
+    setMiFontShort((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
+    setKm(km);
+    setKmFont((fontParams[kmValue.length] || fontParams[kmValue.length + 1]) || fontParams[14]);
+    setKmShort(handleNumForm(km));
+    setKmFontShort((fontParams[kmValueShort.length] || fontParams[kmValueShort.length + 1]) || fontParams[14]);
   }
 
   const nonEmptyStr = (val: string, unit: string) => {
@@ -108,8 +106,15 @@ function App(): React.JSX.Element {
 
   const switchVisibilityStatement = () => {
     // - Switch statements of full or shorten length of the results
-    if (showFull) return setShowFull(false);
+    if (showFull) {
+      setShowFull(false);
+      console.log('kmValue', kmValue);
+      console.log('kmValueShort', kmValueShort);
+      return
+    }
     setShowFull(true);
+    console.log('kmValue', kmValue);
+    console.log('kmValueShort', kmValueShort);
   }
 
   const cleanIfZero = (val: string, unit: string) => {
