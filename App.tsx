@@ -108,13 +108,9 @@ function App(): React.JSX.Element {
     // - Switch statements of full or shorten length of the results
     if (showFull) {
       setShowFull(false);
-      console.log('kmValue', kmValue);
-      console.log('kmValueShort', kmValueShort);
       return
     }
     setShowFull(true);
-    console.log('kmValue', kmValue);
-    console.log('kmValueShort', kmValueShort);
   }
 
   const cleanIfZero = (val: string, unit: string) => {
