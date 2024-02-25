@@ -33,8 +33,8 @@ type FontParams = {
 /** Globals */
 const windowHeight: number = Dimensions.get('window').height;
 const fontParams: FontParams = {
-  14: {fontSize: 17, fontWeight: 'normal'},
-  12: {fontSize: 25, fontWeight: 'normal'},
+  14: {fontSize: 25, fontWeight: 'normal'},
+  12: {fontSize: 28, fontWeight: 'normal'},
   10: {fontSize: 31, fontWeight: 'bold'},
   8: {fontSize: 41, fontWeight: 'bold'},
   6: {fontSize: 48, fontWeight: 'bold'},
@@ -51,37 +51,50 @@ function App(): React.JSX.Element {
   /*** States */
   const [miValue, setMi]: any = useState('0');
   const [kmValue, setKm]: any = useState('0');
+  const [miValueShort, setMiShort]: any = useState('0');
+  const [kmValueShort, setKmShort]: any = useState('0');
   const [miFont, setMiFont]: any = useState(fontParams[2]);
   const [kmFont, setKmFont]: any = useState(fontParams[6]);
+  const [miFontShort, setMiFontShort]: any = useState(fontParams[2]);
+  const [kmFontShort, setKmFontShort]: any = useState(fontParams[6]);
+  const [showFull, setShowFull]: any = useState(false);
   
   /*** Refs */
   const miInputRef = useRef<TextInput | null>(null);
   const kmInputRef = useRef<TextInput | null>(null);
   
   /*** Functions */
-  const handleNumLength = (val: string) => {
-    // - Shorten long strings !!toComplete
-    return val;
+  const handleNumForm = (val: string) => {
+    // - Short long strings !!toComplete
+    return val.slice(0, val.indexOf('.')+2 || val.length-1);
   } 
 
   const kmToMi = (km: any) => {
     // - Conversion from kilometres to miles
     const resKm: string = km;
-    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
-    const resMi: string = handleNumLength(km * 0.621371 + '');
-    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    const resMi: string = handleNumForm(km * 0.621371 + '');
     setKm(resKm);
+    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    setKmShort(handleNumForm(resKm));
+    setKmFontShort((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
     setMi(resMi);
+    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    setMiShort(handleNumForm(resMi));
+    setMiFontShort((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
   }
 
   const miToKm = (mi: any) => {
     // - Conversion from miles to kilometres
     const resMi: string = mi
-    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
-    const resKm: string = handleNumLength(mi / 0.621371 + '');
-    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    const resKm: string = handleNumForm(mi / 0.621371 + '');
     setMi(resMi);
+    setMiFont((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
+    setMiShort(handleNumForm(resMi));
+    setMiFontShort((fontParams[resMi.length] || fontParams[resMi.length + 1]) || fontParams[14]);
     setKm(resKm);
+    setKmFont((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
+    setKmShort(handleNumForm(resKm));
+    setKmFontShort((fontParams[resKm.length] || fontParams[resKm.length + 1]) || fontParams[14]);
   }
 
   const nonEmptyStr = (val: string, unit: string) => {
@@ -93,13 +106,19 @@ function App(): React.JSX.Element {
 
   const blurAll = () => Keyboard.dismiss();
 
-  const switchValues = () => {
-    // - Switch values between miles and kilometers
-    miToKm(kmValue);
+  const switchVisibilityStatement = () => {
+    // - Switch statements of full or shorten length of the results
+    if (showFull) return setShowFull(false);
+    setShowFull(true);
   }
 
   const cleanIfZero = (val: string, unit: string) => {
-    return unit == 'mi' ? (val == '0' ? setMi('') : null) : (val == '0' ? setKm('') : null)
+    // - Enhacne UX via cleaning zero input automatically
+    return (
+      unit == 'mi' ? 
+        (val == '0' ? (setMi(''), setMiShort('')) : null) : 
+        (val == '0' ? (setKm(''), setKmShort('')) : null)
+    )
   }
 
   return (
@@ -113,33 +132,52 @@ function App(): React.JSX.Element {
             style={styles.container}>
               <TouchableOpacity>
                 <View style={styles.unitArea}>
-                <TextInput
-                ref={miInputRef}
-                style={[styles.unitInput, miFont]}
-                keyboardType={'decimal-pad'}
-                value={miValue}
-                onChangeText={miToKm}
-                onBlur={() => nonEmptyStr(miValue, 'mi')}
-                onFocus={() => cleanIfZero(miValue, 'mi')}
-                />
+                  {showFull ? 
+                    <TextInput
+                    ref={miInputRef}
+                    style={[styles.unitInput, miFont]}
+                    keyboardType={'decimal-pad'}
+                    value={miValue}
+                    onChangeText={miToKm}
+                    onBlur={() => nonEmptyStr(miValue, 'mi')}
+                    onFocus={() => cleanIfZero(miValue, 'mi')}
+                    /> :
+                    <TextInput
+                    style={[styles.unitInput, miFontShort]}
+                    keyboardType={'decimal-pad'}
+                    value={miValueShort}
+                    onChangeText={miToKm}
+                    onBlur={() => nonEmptyStr(miValue, 'mi')}
+                    onFocus={() => cleanIfZero(miValue, 'mi')}/>
+                  }
                 </View>
               </TouchableOpacity>
               <TouchableOpacity>
                 <View style={[styles.unitArea, styles.division]}>
-                  <TextInput 
-                  ref={kmInputRef}
-                  style={[styles.unitInput, kmFont]}
-                  keyboardType='number-pad'
-                  value={kmValue}
-                  onChangeText={kmToMi}
-                  onBlur={() => nonEmptyStr(kmValue, 'km')}
-                  onFocus={() => cleanIfZero(kmValue, 'km')}
-                  />
+                  {showFull ? 
+                    <TextInput 
+                    ref={kmInputRef}
+                    style={[styles.unitInput, kmFont]}
+                    keyboardType={'decimal-pad'}
+                    value={kmValue}
+                    onChangeText={kmToMi}
+                    onBlur={() => nonEmptyStr(kmValue, 'km')}
+                    onFocus={() => cleanIfZero(kmValue, 'km')}
+                    /> :
+                    <TextInput 
+                    style={[styles.unitInput, kmFontShort]}
+                    keyboardType={'decimal-pad'}
+                    value={kmValueShort}
+                    onChangeText={kmToMi}
+                    onBlur={() => nonEmptyStr(kmValue, 'km')}
+                    onFocus={() => cleanIfZero(kmValue, 'km')}
+                    />
+                  }
                 </View>
               </TouchableOpacity>
               <TouchableOpacity 
               style={styles.switchBtn}
-              onPress={switchValues}
+              onPress={switchVisibilityStatement}
               >
                 <View style={styles.arrowContainer}>
                   <View style={styles.upArrow}></View>
