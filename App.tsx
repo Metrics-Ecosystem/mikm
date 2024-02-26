@@ -71,7 +71,10 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumForm = (val: string) => {
     // - Short long strings !!toComplete
-    return val.slice(0, val.indexOf('.')+3 || val.length-1);
+    const decimalIndex = val.indexOf('.');
+    const eIndex = val.indexOf('e');
+    if (decimalIndex == -1 || eIndex !== -1) return val;
+    return val.slice(0, decimalIndex+3 || val.length-1);
   } 
 
   const kmToMi = (km: any) => {
@@ -179,6 +182,7 @@ function App(): React.JSX.Element {
                       onFocus={() => cleanIfZero(kmValue, 'km')}
                     />
                   }
+                  <Text style={styles.eLabel}>{}</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity 
@@ -300,6 +304,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'normal',
     textAlign: 'center',
+  },
+  eLabel: {
+    position: 'absolute'
   }
 });
 
