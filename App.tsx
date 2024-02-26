@@ -167,7 +167,7 @@ function App(): React.JSX.Element {
                 <View style={[styles.unitArea, styles.division]}>
                   {showFull ? 
                     <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true} 
+                      multiline={Platform.OS == 'ios' ? undefined : true}
                       ref={kmInputRef}
                       style={[styles.unitInput, kmFont]}
                       keyboardType={'decimal-pad'}
@@ -177,7 +177,7 @@ function App(): React.JSX.Element {
                       onFocus={() => cleanIfZero(kmValue, 'km')}
                     /> :
                     <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true} 
+                      multiline={Platform.OS == 'ios' ? undefined : true}
                       style={[styles.unitInput, kmFontShort]}
                       keyboardType={'decimal-pad'}
                       value={kmValueShort}
@@ -234,13 +234,13 @@ const styles = StyleSheet.create({
     height: (windowHeight / 4),
   },
   unitInput: {
-    flex: 2,
+    display: 'flex',
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    flex: 1,
     fontSize: 62,
     fontWeight: 'bold',
     color: '#ffffff',
-    textAlign: 'center',
-    display: 'flex',
-    flexWrap: 'wrap',
   },
   switchBtn: {
     alignItems: 'center',
@@ -284,6 +284,9 @@ const styles = StyleSheet.create({
     height: '100%',
     borderWidth: 2,
     borderTopColor: '#b9b9b9b9',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
     marginTop: '45%'
   },
   division: {
