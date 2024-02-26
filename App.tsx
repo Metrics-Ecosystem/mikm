@@ -182,7 +182,6 @@ function App(): React.JSX.Element {
                       onFocus={() => cleanIfZero(kmValue, 'km')}
                     />
                   }
-                  <Text style={styles.eLabel}>{}</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity 
@@ -238,7 +237,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   switchBtn: {
     alignItems: 'center',
