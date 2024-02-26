@@ -78,9 +78,10 @@ function App(): React.JSX.Element {
     // - Conversion from kilometres to miles
     const mi: string = km * 0.621371 + '';
     const miShort = handleNumForm(mi);
-    setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
+    const kmFontTemp = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
+    setKmFont(kmFontTemp);
     setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
-    setKmFontShort(kmFont);
+    setKmFontShort(kmFontTemp);
     setMiFontShort((fontParams[miShort.length] || fontParams[miShort.length + 1]) || fontParams[14]);
     setKm(km);
     setKmShort(km);
@@ -92,9 +93,10 @@ function App(): React.JSX.Element {
     // - Conversion from miles to kilometres
     const km: string = mi / 0.621371 + '';
     const kmShort = handleNumForm(km);
-    setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
+    const miFontTemp = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
+    setMiFont(miFontTemp);
     setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
-    setMiFontShort(miFont);
+    setMiFontShort(miFontTemp);
     setKmFontShort((fontParams[kmShort.length] || fontParams[kmShort.length + 1]) || fontParams[14]);
     setMi(mi);
     setMiShort(mi);
