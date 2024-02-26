@@ -142,6 +142,7 @@ function App(): React.JSX.Element {
                 <View style={styles.unitArea}>
                   {showFull ? 
                     <TextInput
+                      multiline={Platform.OS == 'ios' ? undefined : true}
                       ref={miInputRef}
                       style={[styles.unitInput, miFont]}
                       keyboardType={'decimal-pad'}
@@ -151,6 +152,7 @@ function App(): React.JSX.Element {
                       onFocus={() => cleanIfZero(miValue, 'mi')}
                     /> :
                     <TextInput
+                      multiline={Platform.OS == 'ios' ? undefined : true}
                       style={[styles.unitInput, miFontShort]}
                       keyboardType={'decimal-pad'}
                       value={miValueShort}
@@ -164,7 +166,8 @@ function App(): React.JSX.Element {
               <TouchableOpacity>
                 <View style={[styles.unitArea, styles.division]}>
                   {showFull ? 
-                    <TextInput 
+                    <TextInput
+                      multiline={Platform.OS == 'ios' ? undefined : true} 
                       ref={kmInputRef}
                       style={[styles.unitInput, kmFont]}
                       keyboardType={'decimal-pad'}
@@ -173,7 +176,8 @@ function App(): React.JSX.Element {
                       onBlur={() => nonEmptyStr(kmValue, 'km')}
                       onFocus={() => cleanIfZero(kmValue, 'km')}
                     /> :
-                    <TextInput 
+                    <TextInput
+                      multiline={Platform.OS == 'ios' ? undefined : true} 
                       style={[styles.unitInput, kmFontShort]}
                       keyboardType={'decimal-pad'}
                       value={kmValueShort}
@@ -230,13 +234,12 @@ const styles = StyleSheet.create({
     height: (windowHeight / 4),
   },
   unitInput: {
-    flex: 1,
+    flex: 2,
     fontSize: 62,
     fontWeight: 'bold',
     color: '#ffffff',
     textAlign: 'center',
     display: 'flex',
-    flexDirection: 'row',
     flexWrap: 'wrap',
   },
   switchBtn: {
