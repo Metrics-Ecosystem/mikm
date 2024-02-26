@@ -4,6 +4,7 @@
  * @repository https://github.com/Metrics-Ecosystem/mikm.git
  */
 
+/** Imports */
 import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
@@ -32,6 +33,7 @@ type FontParams = {
 
 /** Globals */
 const windowHeight: number = Dimensions.get('window').height;
+
 const fontParams: FontParams = {
   14: {fontSize: 25, fontWeight: 'normal'},
   12: {fontSize: 28, fontWeight: 'normal'},
@@ -40,10 +42,13 @@ const fontParams: FontParams = {
   6: {fontSize: 48, fontWeight: 'bold'},
   4: {fontSize: 55, fontWeight: 'bold'},
   2: {fontSize: 62, fontWeight: 'bold'},
+  0: {fontSize: 72, fontWeight: 'bold'}
 };
+
 const commonStyles: any = {
   margins: '25%'
 };
+
 const arthm = (a: number, unit: number, b: number) => unit ? a+b : a-b;
 
 /** Main component */
@@ -53,10 +58,10 @@ function App(): React.JSX.Element {
   const [kmValue, setKm]: any = useState('0');
   const [miValueShort, setMiShort]: any = useState('0');
   const [kmValueShort, setKmShort]: any = useState('0');
-  const [miFont, setMiFont]: any = useState(fontParams[2]);
-  const [kmFont, setKmFont]: any = useState(fontParams[6]);
-  const [miFontShort, setMiFontShort]: any = useState(fontParams[2]);
-  const [kmFontShort, setKmFontShort]: any = useState(fontParams[6]);
+  const [miFont, setMiFont]: any = useState(fontParams[0]);
+  const [kmFont, setKmFont]: any = useState(fontParams[0]);
+  const [miFontShort, setMiFontShort]: any = useState(fontParams[0]);
+  const [kmFontShort, setKmFontShort]: any = useState(fontParams[0]);
   const [showFull, setShowFull]: any = useState(false);
   
   /*** Refs */
@@ -104,8 +109,6 @@ function App(): React.JSX.Element {
     if (unit == 'km') kmToMi('0');
   }
 
-  const blurAll = () => Keyboard.dismiss();
-
   const switchVisibilityStatement = () => {
     // - Switch statements of full or shorten length of the results
     if (showFull) return setShowFull(false);
@@ -127,28 +130,29 @@ function App(): React.JSX.Element {
       <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.dynamicWrap}>
-          <TouchableOpacity onPress={blurAll}>
+          <TouchableOpacity onPress={Keyboard.dismiss}>
             <View 
             style={styles.container}>
               <TouchableOpacity>
                 <View style={styles.unitArea}>
                   {showFull ? 
                     <TextInput
-                    ref={miInputRef}
-                    style={[styles.unitInput, miFont]}
-                    keyboardType={'decimal-pad'}
-                    value={miValue}
-                    onChangeText={miToKm}
-                    onBlur={() => nonEmptyStr(miValue, 'mi')}
-                    onFocus={() => cleanIfZero(miValue, 'mi')}
+                      ref={miInputRef}
+                      style={[styles.unitInput, miFont]}
+                      keyboardType={'decimal-pad'}
+                      value={miValue}
+                      onChangeText={miToKm}
+                      onBlur={() => nonEmptyStr(miValue, 'mi')}
+                      onFocus={() => cleanIfZero(miValue, 'mi')}
                     /> :
                     <TextInput
-                    style={[styles.unitInput, miFontShort]}
-                    keyboardType={'decimal-pad'}
-                    value={miValueShort}
-                    onChangeText={miToKm}
-                    onBlur={() => nonEmptyStr(miValue, 'mi')}
-                    onFocus={() => cleanIfZero(miValue, 'mi')}/>
+                      style={[styles.unitInput, miFontShort]}
+                      keyboardType={'decimal-pad'}
+                      value={miValueShort}
+                      onChangeText={miToKm}
+                      onBlur={() => nonEmptyStr(miValue, 'mi')}
+                      onFocus={() => cleanIfZero(miValue, 'mi')}
+                    />
                   }
                 </View>
               </TouchableOpacity>
@@ -156,29 +160,29 @@ function App(): React.JSX.Element {
                 <View style={[styles.unitArea, styles.division]}>
                   {showFull ? 
                     <TextInput 
-                    ref={kmInputRef}
-                    style={[styles.unitInput, kmFont]}
-                    keyboardType={'decimal-pad'}
-                    value={kmValue}
-                    onChangeText={kmToMi}
-                    onBlur={() => nonEmptyStr(kmValue, 'km')}
-                    onFocus={() => cleanIfZero(kmValue, 'km')}
+                      ref={kmInputRef}
+                      style={[styles.unitInput, kmFont]}
+                      keyboardType={'decimal-pad'}
+                      value={kmValue}
+                      onChangeText={kmToMi}
+                      onBlur={() => nonEmptyStr(kmValue, 'km')}
+                      onFocus={() => cleanIfZero(kmValue, 'km')}
                     /> :
                     <TextInput 
-                    style={[styles.unitInput, kmFontShort]}
-                    keyboardType={'decimal-pad'}
-                    value={kmValueShort}
-                    onChangeText={kmToMi}
-                    onBlur={() => nonEmptyStr(kmValue, 'km')}
-                    onFocus={() => cleanIfZero(kmValue, 'km')}
+                      style={[styles.unitInput, kmFontShort]}
+                      keyboardType={'decimal-pad'}
+                      value={kmValueShort}
+                      onChangeText={kmToMi}
+                      onBlur={() => nonEmptyStr(kmValue, 'km')}
+                      onFocus={() => cleanIfZero(kmValue, 'km')}
                     />
                   }
                 </View>
               </TouchableOpacity>
               <TouchableOpacity 
-              style={styles.switchBtn}
-              onPress={switchVisibilityStatement}
-              activeOpacity={1}
+                style={styles.switchBtn}
+                onPress={switchVisibilityStatement}
+                activeOpacity={1}
               >
                 <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
                   <View style={styles.pupil}></View>
