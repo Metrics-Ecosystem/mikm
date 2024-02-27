@@ -131,11 +131,14 @@ function App(): React.JSX.Element {
       <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.dynamicWrap}>
-          <TouchableOpacity onPress={Keyboard.dismiss}>
+          <TouchableOpacity 
+            onPress={Keyboard.dismiss} 
+            activeOpacity={1}>
             <View 
             style={styles.container}>
               <TouchableOpacity activeOpacity={1}>
-                <View style={styles.unitArea}>
+                <View 
+                  style={styles.unitArea}>
                   {showFull ? 
                     <TextInput
                       multiline={Platform.OS == 'ios' ? undefined : true}
