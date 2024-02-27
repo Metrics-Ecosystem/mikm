@@ -83,7 +83,6 @@ function App(): React.JSX.Element {
   const kmToMi = (km: any): void => {
     // - Conversion from kilometres to miles
     km = km.replaceAll(/[~,-]/g, '');
-    console.log('km', km);
     const mi: string = km * 0.621371 + '';
     const miShort: string = handleNumForm(mi);
     const kmFontTemp: TextStyle = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
@@ -100,7 +99,6 @@ function App(): React.JSX.Element {
   const miToKm = (mi: any): void => {
     // - Conversion from miles to kilometres
     mi = mi.replaceAll(/[~,-]/g, '');
-    console.log('mi', mi);
     const km: string = mi / 0.621371 + '';
     const kmShort: string = handleNumForm(km);
     const miFontTemp: TextStyle = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
