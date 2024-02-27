@@ -120,13 +120,11 @@ function App(): React.JSX.Element {
     setShowFull(!showFull);
   }
 
-  const cleanIfZero = (val: string, unit: string) => {
+  const cleanIfZero = (val: string, unit: string): void => {
     // - Enhacne UX via hiding zero input automatically
-    return (
-      unit == 'mi' ? 
-        (val == '0' ? (setMi(''), setMiShort('')) : null) : 
-        (val == '0' ? (setKm(''), setKmShort('')) : null)
-    )
+    unit == 'mi' ? 
+      (val == '0' ? (setMi(''), setMiShort('')) : null) : 
+      (val == '0' ? (setKm(''), setKmShort('')) : null)
   }
 
   return (
