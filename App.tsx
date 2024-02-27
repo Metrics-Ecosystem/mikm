@@ -115,10 +115,9 @@ function App(): React.JSX.Element {
     if (unit == 'km') kmToMi('0');
   }
 
-  const switchVisibilityStatement = () => {
+  const switchVisibilityStatement = (): void => {
     // - Switch statements of full or shorten length of the results
-    if (showFull) return setShowFull(false);
-    setShowFull(true);
+    setShowFull(!showFull);
   }
 
   const cleanIfZero = (val: string, unit: string) => {
