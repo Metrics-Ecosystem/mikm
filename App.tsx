@@ -20,7 +20,7 @@ import {
   Keyboard,
   DimensionValue,
 } from 'react-native';
-// import i18n from './i18n' // localisation library
+import i18n from './i18n';
 
 /** Types */
 type TextStyle = {
@@ -193,8 +193,8 @@ function App(): React.JSX.Element {
                 </View>
               </TouchableOpacity>
               <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
-                <Text style={styles.sideLabel}>mi</Text>
-                <Text style={styles.sideLabel}>km</Text>
+                <Text style={styles.sideLabel}>{i18n.t('mi')}</Text>
+                <Text style={styles.sideLabel}>{i18n.t('km')}</Text>
               </View>
             </View>
           </TouchableOpacity>
