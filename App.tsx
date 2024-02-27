@@ -51,7 +51,7 @@ const fontParams: FontParams = {
 };
 
 const commonStyles: CommonStyles = {
-  margins: '25%'
+  margins: '20%'
 };
 
 const arthm = (a: number, unit: number, b: number): number => unit ? a+b : a-b;
@@ -138,7 +138,7 @@ function App(): React.JSX.Element {
           <TouchableOpacity onPress={Keyboard.dismiss}>
             <View 
             style={styles.container}>
-              <TouchableOpacity>
+              <TouchableOpacity activeOpacity={1}>
                 <View style={styles.unitArea}>
                   {showFull ? 
                     <TextInput
@@ -162,7 +162,7 @@ function App(): React.JSX.Element {
                   }
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity activeOpacity={1}>
                 <View style={[styles.unitArea, styles.division]}>
                   {showFull ? 
                     <TextInput
@@ -244,8 +244,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    width: '25%',
-    height: '7%',
+    width: '30%',
+    height: '10%',
     backgroundColor: '#000000',
     borderRadius: 5,
     position: 'absolute'
@@ -295,11 +295,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     display: 'flex',
     justifyContent: 'space-around',
-    top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 20),
+    top: arthm(windowHeight - windowHeight / 2, 0, windowHeight / 16),
   },
   unitLabelsContainer: {
-    width: '12.5%',
-    height: windowHeight / 10,
+    width: '15%',
+    height: windowHeight / 8,
     right: commonStyles.margins,
   },
   sideLabel: {
