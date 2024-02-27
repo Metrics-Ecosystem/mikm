@@ -75,7 +75,9 @@ function App(): React.JSX.Element {
     const dotIndex: number = val.indexOf('.');
     const eIndex: number = val.indexOf('e');
     if (dotIndex == -1 || eIndex !== -1) return val;
-    return val.slice(0, dotIndex+3 || val.length-1);
+    const shortValue = val.slice(0, dotIndex+3 || val.length-1);
+    if (shortValue == val) return val;
+    return shortValue + '~';
   } 
 
   const kmToMi = (km: any): void => {
