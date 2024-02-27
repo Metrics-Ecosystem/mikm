@@ -108,11 +108,10 @@ function App(): React.JSX.Element {
     setKmShort(kmShort);
   }
 
-  const nonEmptyStr = (val: string, unit: string): void => {
+  const nonEmptyStr = (val: string, callback: Function): void => {
     // - Check input after blurring to make sure there is a value
     if (val != '') return;
-    if (unit == 'mi') miToKm('0');
-    if (unit == 'km') kmToMi('0');
+    callback('0'); // [sets inputs to 0] => miToKm('0') || kmToMi('0')
   }
 
   const switchVisibilityStatement = (): void => {
@@ -120,11 +119,9 @@ function App(): React.JSX.Element {
     setShowFull(!showFull);
   }
 
-  const cleanIfZero = (val: string, unit: string): void => {
+  const cleanIfZero = (val: string, callbacks: Array<Function>): void => {
     // - Enhacne UX via hiding zero input automatically
-    unit == 'mi' ? 
-      (val == '0' ? (setMi(''), setMiShort('')) : null) : 
-      (val == '0' ? (setKm(''), setKmShort('')) : null)
+      if (val == '0') callbacks.forEach(cb => cb(''))
   }
 
   return (
@@ -145,8 +142,8 @@ function App(): React.JSX.Element {
                       keyboardType={'decimal-pad'}
                       value={miValue}
                       onChangeText={miToKm}
-                      onBlur={() => nonEmptyStr(miValue, 'mi')}
-                      onFocus={() => cleanIfZero(miValue, 'mi')}
+                      onBlur={() => nonEmptyStr(miValue, miToKm)}
+                      onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
                     /> :
                     <TextInput
                       multiline={Platform.OS == 'ios' ? undefined : true}
@@ -154,8 +151,8 @@ function App(): React.JSX.Element {
                       keyboardType={'decimal-pad'}
                       value={miValueShort}
                       onChangeText={miToKm}
-                      onBlur={() => nonEmptyStr(miValue, 'mi')}
-                      onFocus={() => cleanIfZero(miValue, 'mi')}
+                      onBlur={() => nonEmptyStr(miValue, miToKm)}
+                      onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
                     />
                   }
                 </View>
@@ -169,8 +166,8 @@ function App(): React.JSX.Element {
                       keyboardType={'decimal-pad'}
                       value={kmValue}
                       onChangeText={kmToMi}
-                      onBlur={() => nonEmptyStr(kmValue, 'km')}
-                      onFocus={() => cleanIfZero(kmValue, 'km')}
+                      onBlur={() => nonEmptyStr(kmValue, kmToMi)}
+                      onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
                     /> :
                     <TextInput
                       multiline={Platform.OS == 'ios' ? undefined : true}
@@ -178,8 +175,8 @@ function App(): React.JSX.Element {
                       keyboardType={'decimal-pad'}
                       value={kmValueShort}
                       onChangeText={kmToMi}
-                      onBlur={() => nonEmptyStr(kmValue, 'km')}
-                      onFocus={() => cleanIfZero(kmValue, 'km')}
+                      onBlur={() => nonEmptyStr(kmValue, kmToMi)}
+                      onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
                     />
                   }
                 </View>
