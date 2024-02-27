@@ -51,7 +51,7 @@ i18n
     compatibilityJSON: 'v3',
     resources,
     detection: {
-        order: ['react-native'],
+      order: ['react-native'],
     },
     fallbackLng: 'en',
     interpolation: {
