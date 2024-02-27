@@ -59,15 +59,15 @@ const arthm = (a: number, unit: number, b: number): number => unit ? a+b : a-b;
 /** Main component */
 function App(): React.JSX.Element {
   /*** States */
-  const [miValue, setMi]: any = useState('0');
-  const [kmValue, setKm]: any = useState('0');
-  const [miValueShort, setMiShort]: any = useState('0');
-  const [kmValueShort, setKmShort]: any = useState('0');
-  const [miFont, setMiFont]: any = useState(fontParams[0]);
-  const [kmFont, setKmFont]: any = useState(fontParams[0]);
-  const [miFontShort, setMiFontShort]: any = useState(fontParams[0]);
-  const [kmFontShort, setKmFontShort]: any = useState(fontParams[0]);
-  const [showFull, setShowFull]: any = useState(false);
+  const [miValue, setMi] = useState<string>('0');
+  const [kmValue, setKm] = useState<string>('0');
+  const [miValueShort, setMiShort] = useState<string>('0');
+  const [kmValueShort, setKmShort] = useState<string>('0');
+  const [miFont, setMiFont] = useState<FontParams>(fontParams[0]);
+  const [kmFont, setKmFont] = useState<FontParams>(fontParams[0]);
+  const [miFontShort, setMiFontShort] = useState<FontParams>(fontParams[0]);
+  const [kmFontShort, setKmFontShort] = useState<FontParams>(fontParams[0]);
+  const [showFull, setShowFull] = useState<boolean>(false);
   
   /*** Functions */
   const handleNumForm = (val: string): string => {
