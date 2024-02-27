@@ -110,8 +110,7 @@ function App(): React.JSX.Element {
 
   const nonEmptyStr = (val: string, callback: Function): void => {
     // - Check input after blurring to make sure there is a value
-    if (val != '') return;
-    callback('0'); // [sets inputs to 0] => miToKm('0') || kmToMi('0')
+    if (val == '') callback('0'); // [sets inputs to 0] => miToKm('0') || kmToMi('0')
   }
 
   const cleanIfZero = (val: string, callbacks: Array<Function>): void => {
