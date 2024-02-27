@@ -18,6 +18,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  DimensionValue,
 } from 'react-native';
 // import i18n from './i18n' // localisation library
 
@@ -29,6 +30,10 @@ type TextStyle = {
 
 type FontParams = {
   [key: number]: TextStyle
+}
+
+type CommonStyles = {
+  margins: DimensionValue;
 }
 
 /** Globals */
@@ -45,7 +50,7 @@ const fontParams: FontParams = {
   0: {fontSize: 72, fontWeight: 'bold'}
 };
 
-const commonStyles: any = {
+const commonStyles: CommonStyles = {
   margins: '25%'
 };
 
@@ -71,8 +76,8 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumForm = (val: string) => {
     // - Short long strings !!toComplete
-    const decimalIndex = val.indexOf('.');
-    const eIndex = val.indexOf('e');
+    const decimalIndex: number = val.indexOf('.');
+    const eIndex: number = val.indexOf('e');
     if (decimalIndex == -1 || eIndex !== -1) return val;
     return val.slice(0, decimalIndex+3 || val.length-1);
   } 
@@ -80,8 +85,8 @@ function App(): React.JSX.Element {
   const kmToMi = (km: any) => {
     // - Conversion from kilometres to miles
     const mi: string = km * 0.621371 + '';
-    const miShort = handleNumForm(mi);
-    const kmFontTemp = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
+    const miShort: string = handleNumForm(mi);
+    const kmFontTemp: FontParams = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
     setKmFont(kmFontTemp);
     setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
     setKmFontShort(kmFontTemp);
@@ -95,8 +100,8 @@ function App(): React.JSX.Element {
   const miToKm = (mi: any) => {
     // - Conversion from miles to kilometres
     const km: string = mi / 0.621371 + '';
-    const kmShort = handleNumForm(km);
-    const miFontTemp = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
+    const kmShort: string = handleNumForm(km);
+    const miFontTemp: FontParams = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
     setMiFont(miFontTemp);
     setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
     setMiFontShort(miFontTemp);
