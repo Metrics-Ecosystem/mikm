@@ -54,7 +54,7 @@ const commonStyles: CommonStyles = {
   margins: '25%'
 };
 
-const arthm = (a: number, unit: number, b: number) => unit ? a+b : a-b;
+const arthm = (a: number, unit: number, b: number): number => unit ? a+b : a-b;
 
 /** Main component */
 function App(): React.JSX.Element {
@@ -69,24 +69,20 @@ function App(): React.JSX.Element {
   const [kmFontShort, setKmFontShort]: any = useState(fontParams[0]);
   const [showFull, setShowFull]: any = useState(false);
   
-  /*** Refs */
-  const miInputRef = useRef<TextInput | null>(null);
-  const kmInputRef = useRef<TextInput | null>(null);
-  
   /*** Functions */
-  const handleNumForm = (val: string) => {
-    // - Short long strings !!toComplete
+  const handleNumForm = (val: string): string => {
+    // - Short long strings
     const decimalIndex: number = val.indexOf('.');
     const eIndex: number = val.indexOf('e');
     if (decimalIndex == -1 || eIndex !== -1) return val;
     return val.slice(0, decimalIndex+3 || val.length-1);
   } 
 
-  const kmToMi = (km: any) => {
+  const kmToMi = (km: any): void => {
     // - Conversion from kilometres to miles
     const mi: string = km * 0.621371 + '';
     const miShort: string = handleNumForm(mi);
-    const kmFontTemp: FontParams = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
+    const kmFontTemp: TextStyle = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
     setKmFont(kmFontTemp);
     setMiFont((fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14]);
     setKmFontShort(kmFontTemp);
@@ -97,11 +93,11 @@ function App(): React.JSX.Element {
     setMiShort(miShort);
   }
 
-  const miToKm = (mi: any) => {
+  const miToKm = (mi: any): void => {
     // - Conversion from miles to kilometres
     const km: string = mi / 0.621371 + '';
     const kmShort: string = handleNumForm(km);
-    const miFontTemp: FontParams = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
+    const miFontTemp: TextStyle = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
     setMiFont(miFontTemp);
     setKmFont((fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14]);
     setMiFontShort(miFontTemp);
@@ -112,7 +108,7 @@ function App(): React.JSX.Element {
     setKmShort(kmShort);
   }
 
-  const nonEmptyStr = (val: string, unit: string) => {
+  const nonEmptyStr = (val: string, unit: string): void => {
     // - Check input after blurring to make sure there is a value
     if (val != '') return;
     if (unit == 'mi') miToKm('0');
@@ -148,7 +144,6 @@ function App(): React.JSX.Element {
                   {showFull ? 
                     <TextInput
                       multiline={Platform.OS == 'ios' ? undefined : true}
-                      ref={miInputRef}
                       style={[styles.unitInput, miFont]}
                       keyboardType={'decimal-pad'}
                       value={miValue}
@@ -173,7 +168,6 @@ function App(): React.JSX.Element {
                   {showFull ? 
                     <TextInput
                       multiline={Platform.OS == 'ios' ? undefined : true}
-                      ref={kmInputRef}
                       style={[styles.unitInput, kmFont]}
                       keyboardType={'decimal-pad'}
                       value={kmValue}
