@@ -114,14 +114,14 @@ function App(): React.JSX.Element {
     callback('0'); // [sets inputs to 0] => miToKm('0') || kmToMi('0')
   }
 
+  const cleanIfZero = (val: string, callbacks: Array<Function>): void => {
+    // - Enhacne UX via hiding zero input automatically
+    if (val == '0') callbacks.forEach(cb => cb(''))
+  }
+
   const switchVisibilityStatement = (): void => {
     // - Switch statements of full or shorten length of the results
     setShowFull(!showFull);
-  }
-
-  const cleanIfZero = (val: string, callbacks: Array<Function>): void => {
-    // - Enhacne UX via hiding zero input automatically
-      if (val == '0') callbacks.forEach(cb => cb(''))
   }
 
   return (
