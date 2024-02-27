@@ -42,7 +42,7 @@ import mk from './locales/mk.json';
 const resources = {
   en,es,fr,de,zh,ru,it,pt,ja,ar,hi,bn,ur,sw,tl,nl,ko,tr,vi,
   th,cs,pl,hu,el,ro,id,ms,fi,sv,da,no,he,is,sk,sr,lt,sl,mk,
-  // 36 languages
+  // 38 languages
 };
 
 i18n
