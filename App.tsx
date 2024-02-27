@@ -5,7 +5,7 @@
  */
 
 /** Imports */
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -72,10 +72,10 @@ function App(): React.JSX.Element {
   /*** Functions */
   const handleNumForm = (val: string): string => {
     // - Short long strings
-    const decimalIndex: number = val.indexOf('.');
+    const dotIndex: number = val.indexOf('.');
     const eIndex: number = val.indexOf('e');
-    if (decimalIndex == -1 || eIndex !== -1) return val;
-    return val.slice(0, decimalIndex+3 || val.length-1);
+    if (dotIndex == -1 || eIndex !== -1) return val;
+    return val.slice(0, dotIndex+3 || val.length-1);
   } 
 
   const kmToMi = (km: any): void => {
