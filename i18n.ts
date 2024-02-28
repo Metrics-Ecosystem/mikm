@@ -1,4 +1,5 @@
 import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import reactNativeLanguageDetector from '@os-team/i18next-react-native-language-detector';
 import en from './locales/en.json';
 import es from './locales/es.json';
@@ -47,6 +48,7 @@ const resources = {
 
 i18n
   .use(reactNativeLanguageDetector)
+  .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',
     resources,
