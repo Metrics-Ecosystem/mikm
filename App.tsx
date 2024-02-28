@@ -56,6 +56,8 @@ const commonStyles: CommonStyles = {
 
 const arthm = (a: number, unit: number, b: number): number => unit ? a+b : a-b;
 
+const regExpUseless = /[~, \s-]/g;
+
 /** Main component */
 function App(): React.JSX.Element {
   /*** States */
@@ -82,7 +84,7 @@ function App(): React.JSX.Element {
 
   const kmToMi = (km: any): void => {
     // - Conversion from kilometres to miles
-    km = km.replaceAll(/[~, \s-]/g, '');
+    km = km.replaceAll(regExpUseless);
     const mi: string = km * 0.621371 + '';
     const miShort: string = handleNumForm(mi);
     const kmFontTemp: TextStyle = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
@@ -98,7 +100,7 @@ function App(): React.JSX.Element {
 
   const miToKm = (mi: any): void => {
     // - Conversion from miles to kilometres
-    mi = mi.replaceAll(/[~, \s-]/g, '');
+    mi = mi.replaceAll(regExpUseless);
     const km: string = mi / 0.621371 + '';
     const kmShort: string = handleNumForm(km);
     const miFontTemp: TextStyle = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
