@@ -132,79 +132,79 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar hidden={true} />
-      <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.dynamicWrap}>
-          <TouchableOpacity 
-            onPress={Keyboard.dismiss} 
-            activeOpacity={1}>
-            <View 
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.dynamicWrap}>
+        <TouchableOpacity
+          onPress={Keyboard.dismiss}
+          activeOpacity={1}>
+          <View
             style={styles.container}>
-              <TouchableOpacity activeOpacity={1}>
-                <View 
-                  style={styles.unitArea}>
-                  {showFull ? 
-                    <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true}
-                      style={[styles.unitInput, miFont]}
-                      keyboardType={'decimal-pad'}
-                      value={miValue}
-                      onChangeText={miToKm}
-                      onBlur={() => nonEmptyStr(miValue, miToKm)}
-                      onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
-                    /> :
-                    <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true}
-                      style={[styles.unitInput, miFontShort]}
-                      keyboardType={'decimal-pad'}
-                      value={miValueShort}
-                      onChangeText={miToKm}
-                      onBlur={() => nonEmptyStr(miValue, miToKm)}
-                      onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
-                    />
-                  }
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={1}>
-                <View style={[styles.unitArea, styles.division]}>
-                  {showFull ? 
-                    <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true}
-                      style={[styles.unitInput, kmFont]}
-                      keyboardType={'decimal-pad'}
-                      value={kmValue}
-                      onChangeText={kmToMi}
-                      onBlur={() => nonEmptyStr(kmValue, kmToMi)}
-                      onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
-                    /> :
-                    <TextInput
-                      multiline={Platform.OS == 'ios' ? undefined : true}
-                      style={[styles.unitInput, kmFontShort]}
-                      keyboardType={'decimal-pad'}
-                      value={kmValueShort}
-                      onChangeText={kmToMi}
-                      onBlur={() => nonEmptyStr(kmValue, kmToMi)}
-                      onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
-                    />
-                  }
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.switchBtn}
-                onPress={switchVisibilityStatement}
-                activeOpacity={1}
-              >
-                <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
-                  <View style={styles.pupil}></View>
-                  {!showFull ? <View style={styles.stroked}></View> : null}
-                </View>
-              </TouchableOpacity>
-              <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
-                <Text style={styles.sideLabel}>{i18n.t('mi')}</Text>
-                <Text style={styles.sideLabel}>{i18n.t('km')}</Text>
+            <TouchableOpacity activeOpacity={1}>
+              <View
+                style={styles.unitArea}>
+                {showFull ? 
+                  <TextInput
+                    multiline={Platform.OS == 'ios' ? undefined : true}
+                    style={[styles.unitInput, miFont]}
+                    keyboardType={'decimal-pad'}
+                    value={miValue}
+                    onChangeText={miToKm}
+                    onBlur={() => nonEmptyStr(miValue, miToKm)}
+                    onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
+                  /> :
+                  <TextInput
+                    multiline={Platform.OS == 'ios' ? undefined : true}
+                    style={[styles.unitInput, miFontShort]}
+                    keyboardType={'decimal-pad'}
+                    value={miValueShort}
+                    onChangeText={miToKm}
+                    onBlur={() => nonEmptyStr(miValue, miToKm)}
+                    onFocus={() => cleanIfZero(miValue, [setMi, setMiShort])}
+                  />
+                }
               </View>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={1}>
+              <View style={[styles.unitArea, styles.division]}>
+                {showFull ? 
+                  <TextInput
+                    multiline={Platform.OS == 'ios' ? undefined : true}
+                    style={[styles.unitInput, kmFont]}
+                    keyboardType={'decimal-pad'}
+                    value={kmValue}
+                    onChangeText={kmToMi}
+                    onBlur={() => nonEmptyStr(kmValue, kmToMi)}
+                    onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
+                  /> :
+                  <TextInput
+                    multiline={Platform.OS == 'ios' ? undefined : true}
+                    style={[styles.unitInput, kmFontShort]}
+                    keyboardType={'decimal-pad'}
+                    value={kmValueShort}
+                    onChangeText={kmToMi}
+                    onBlur={() => nonEmptyStr(kmValue, kmToMi)}
+                    onFocus={() => cleanIfZero(kmValue, [setKm, setKmShort])}
+                  />
+                }
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.switchBtn}
+              onPress={switchVisibilityStatement}
+              activeOpacity={1}
+            >
+              <View style={[styles.eyeIcon, (showFull ? styles.eyeIconOn : styles.eyeIconOff)]}>
+                <View style={styles.pupil}></View>
+                {!showFull ? <View style={styles.stroked}></View> : null}
+              </View>
+            </TouchableOpacity>
+            <View style={[styles.labelsContainer, styles.unitLabelsContainer]}>
+              <Text style={styles.sideLabel}>{i18n.t('mi')}</Text>
+              <Text style={styles.sideLabel}>{i18n.t('km')}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
