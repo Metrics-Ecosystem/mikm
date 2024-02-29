@@ -56,7 +56,7 @@ const commonStyles: CommonStyles = {
 
 const arthm = (a: number, unit: number, b: number): number => unit ? a+b : a-b;
 
-const regExpUseless: RegExp = /[~, \s-]/g;
+const regExpUseless: RegExp = /[^0-9.]/g;
 
 /** Main component */
 function App(): React.JSX.Element {
@@ -82,9 +82,22 @@ function App(): React.JSX.Element {
     return shortValue + '~';
   } 
 
+  const validateValue = (value: string): string => {
+    // - Remove invalid characters and filter multiple dots
+    if (value == '.') return '0.';
+    let validValue: string = value;
+    if (value.split('.').length > 2) {
+      const nextAfterDot: number = value.indexOf('.') + 1;
+      validValue =
+        value.slice(0, nextAfterDot) + 
+        value.slice(nextAfterDot, value.length-1).replaceAll('.', '');
+    }
+    return validValue.replaceAll(regExpUseless, '');
+  }
+
   const kmToMi = (km: any): void => {
     // - Conversion from kilometres to miles
-    km = km.replaceAll(regExpUseless, '');
+    km = validateValue(km);
     const mi: string = km * 0.621371 + '';
     const miShort: string = handleNumForm(mi);
     const kmFontTemp: TextStyle = (fontParams[km.length] || fontParams[km.length + 1]) || fontParams[14];
@@ -100,7 +113,7 @@ function App(): React.JSX.Element {
 
   const miToKm = (mi: any): void => {
     // - Conversion from miles to kilometres
-    mi = mi.replaceAll(regExpUseless, '');
+    mi = validateValue(mi);
     const km: string = mi / 0.621371 + '';
     const kmShort: string = handleNumForm(km);
     const miFontTemp: TextStyle = (fontParams[mi.length] || fontParams[mi.length + 1]) || fontParams[14];
