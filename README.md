@@ -7,7 +7,7 @@ __Promotional__:
 - Miles and Kilometers
 
 __Description__: 
-- The MiKm app is a swift way to get comfortable wether you are used to miles or kilometers. <br>Miles/Kilometers converter with a minimalistic and user-friendly design delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
+- The MiKm app is a swift way to get comfortable whether you are used to miles or kilometers. <br>Miles/Kilometers converter with a minimalistic and user-friendly design delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
 
 CONVERT <br>Convert values quickly by simply entering values from your phone's keypad <br> 
 PINPOINT <br>Switch easily between short approximate and precise values in the required system as needed by clicking the centered "eye" button <br> 
