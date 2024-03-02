@@ -12,7 +12,7 @@ __Description__:
 CONVERT <br>Convert values quickly by simply entering values from your phone's keypad <br> 
 PINPOINT <br>Switch easily between short approximate and precise values in the required system as needed by clicking the centered "eye" button <br> 
 PASTE NO WASTE <br>Paste any copied values into the input without worrying about accidently selected characters such as "12.556mi!" -> "12.556" - the app will understand what you meant<br>
-ENJOY <br> MiKm has no advertisements embeeded, so enjoy the smooth experience while using our software
+ENJOY <br> MiKm has no advertisements embeeded, so enjoy the smooth experience while using our free software available
 
 Happy converting!
 
