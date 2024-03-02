@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import reactNativeLanguageDetector from '@os-team/i18next-react-native-language-detector';
 import zhHant from './locales/zhHant.json'; //TRADITIONAL CHINESE
-import zhHans from './locales/zhHans.json'; //SIMPLIFIED CHINESE
+import zh from './locales/zh.json'; //TRADITIONAL CHINESE
 import en from './locales/en.json'; //ENGLISH
 import es from './locales/es.json'; //SPANISH
 import pt from './locales/pt.json'; //PORTUGUESE
@@ -34,8 +34,36 @@ import th from './locales/th.json'; //THAI
 
 const resources = {
   // 30 languages
-  zhHant,zhHans,en,es,pt,fr,de,it,sv,nl,da,no,fi,pl,
-  cs,el,hu,ro,sk,ja,ru,he,ar,id,ms,hi,ko,tr,vi,th
+  'zh-Hant': zhHant,
+  'zh': zh,
+  'en': en,
+  'es': es,
+  'pt': pt,
+  'fr': fr,
+  'de': de,
+  'it': it,
+  'sv': sv,
+  'nl': nl,
+  'da': da,
+  'no': no,
+  'fi': fi,
+  'pl': pl,
+  'cs': cs,
+  'el': el,
+  'hu': hu,
+  'ro': ro,
+  'sk': sk,
+  'ja': ja,
+  'ru': ru,
+  'he': he,
+  'ar': ar,
+  'id': id,
+  'ms': ms,
+  'hi': hi,
+  'ko': ko,
+  'tr': tr,
+  'vi': vi,
+  'th': th
 };
 
 i18n
@@ -44,6 +72,8 @@ i18n
   .init({
     compatibilityJSON: 'v3',
     resources,
+    supportedLngs: ['zh-Hant','zh','en','es','pt','fr','de','it','sv','nl','da','no','fi','pl',
+      'cs','el','hu','ro','sk','ja','ru','he','ar','id','ms','hi','ko','tr','vi','th'],
     detection: {
       order: ['react-native'],
     },
