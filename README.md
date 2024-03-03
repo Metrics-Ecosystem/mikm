@@ -1,4 +1,4 @@
-# __Metrics Ecosystem__ / __MiKm__ <br>
+# __MiKm__ / __Metrics Ecosystem__ <br>
 
 ## Tech_Desc ##
 
@@ -27,7 +27,7 @@ __Name__:
 __Promotional__:
 - Between Miles and Kilometers
 
-__Description__: 
+__Description__: <br>
 The MiKm app is a swift way to get comfortable whether you are used to miles or kilometers. <br>
 
 <br>The converter is designed following main concepts of a minimalistic and user-friendly interface delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
@@ -43,9 +43,9 @@ ENJOY <br> MiKm has no advertisements embeeded, enjoy the smooth experience whil
 
 Happy converting!
 
-- - 
+##
 
-* * The App is available in 30 languages:
+*   The App is available in 30 languages:
     Traditional Chinese,
     Simplified Chinese,
     English,
