@@ -65,7 +65,7 @@ Happy converting!
     Greek,
     Hungarian,
     Romanian,
-    Slovak
+    Slovak,
     Japanese,
     Russian,
     Hebrew,
@@ -76,4 +76,4 @@ Happy converting!
     Korean,
     Turkish,
     Vietnamese,
-    Thai,
+    Thai
