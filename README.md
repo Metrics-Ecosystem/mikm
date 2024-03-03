@@ -1,13 +1,33 @@
-# __Metrics Ecosystem__ / __MiKm__
+# __Metrics Ecosystem__ / __MiKm__ <br>
+
+## Tech_Desc ## <br>
+
+__Technologies used__ <br>
+- React Native TypesScript
+- Xcode
+- Android Studio
+- Figma
+- i18next
+- Jest
+
+__Main features & advantages__
+- Small and easily manageble amount of code
+- Minimalistic intuitive design
+- High speed of download
+- High speed of functionality implementation
+- Sign task orientation optimising redundancy in UX and code
+- Primary focus of user experience
+
+## Com_Desc ##
 
 __Name__: 
 - MiKm
 
 __Promotional__:
-- Miles and Kilometers
+- Between Miles and Kilometers
 
 __Description__: 
-- The MiKm app is a swift way to get comfortable whether you are used to miles or kilometers. <br>Miles/Kilometers converter with a minimalistic and user-friendly design delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
+- The MiKm app is a swift way to get comfortable whether you are used to miles or kilometers. <br>Miles/Kilometers converter designed following main concepts of a minimalistic and user-friendly interface delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
 
 CONVERT <br>Convert values quickly by simply entering values from your phone's keypad <br> 
 PINPOINT <br>Switch easily between short approximate and precise values in the required system as needed by clicking the centered "eye" button <br> 
