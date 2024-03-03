@@ -17,7 +17,7 @@ __Main features & advantages__
 - High speed of download
 - High speed of functionality implementation
 - Signle task orientation optimising redundancy in UX and code
-- Primary focus of user experience
+- Primary focus on user experience
 
 ## Com_Desc ##
 
