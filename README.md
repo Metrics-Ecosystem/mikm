@@ -46,7 +46,7 @@ Happy converting!
 
 ##
 
-*   The App is available in 30 languages:
+*   ___The App is available in 30 languages:___ <br>
     Traditional Chinese,
     Simplified Chinese,
     English,
