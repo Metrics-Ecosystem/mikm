@@ -28,9 +28,10 @@ __Promotional__:
 - Between Miles and Kilometers
 
 __Description__: <br>
+
 The MiKm app is a swift way to get comfortable whether you are used to miles or kilometers. <br>
 
-<br>The converter is designed following main concepts of a minimalistic and user-friendly interface delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
+The converter is designed following main concepts of a minimalistic and user-friendly interface delivering seamless experience to users who need fast and high quality solutions in their traveling, commuting, fitness and various daily tasks. <br>
 
 CONVERT <br>Convert values quickly by simply entering values from your phone's keypad <br> 
 
