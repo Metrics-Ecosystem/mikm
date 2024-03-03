@@ -3,7 +3,7 @@
 ## Tech_Desc ##
 
 __Technologies used__ <br>
-- React Native TypesScript
+- React Native TypeScript
 - Xcode
 - Android Studio
 - Figma
