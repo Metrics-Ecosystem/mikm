@@ -16,7 +16,7 @@ __Main features & advantages__
 - Minimalistic intuitive design
 - High speed of download
 - High speed of functionality implementation
-- Signle task orientation optimising redundancy in UX and code
+- Single task orientation optimising redundancy in UX and code
 - Primary focus on user experience
 
 ## Com_Desc ##
