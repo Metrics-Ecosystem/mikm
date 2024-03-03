@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import reactNativeLanguageDetector from '@os-team/i18next-react-native-language-detector';
 import zhHant from './locales/zhHant.json'; //TRADITIONAL CHINESE
-import zh from './locales/zh.json'; //TRADITIONAL CHINESE
+import zh from './locales/zh.json'; //SIMPLIFIED CHINESE
 import en from './locales/en.json'; //ENGLISH
 import es from './locales/es.json'; //SPANISH
 import pt from './locales/pt.json'; //PORTUGUESE
