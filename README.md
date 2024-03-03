@@ -12,7 +12,7 @@ __Technologies used__ <br>
 - Apple TestFlight
 
 __Main features & advantages__
-- Small and easily manageble amount of code
+- Small and easily managable amount of code
 - Minimalistic intuitive design
 - High speed of download
 - High speed of functionality implementation
