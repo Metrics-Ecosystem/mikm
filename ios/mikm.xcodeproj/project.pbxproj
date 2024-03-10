@@ -483,7 +483,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.metricsecosystem.mikm.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.metricsecosystem.mikm.debug;
 				PRODUCT_NAME = mikm;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
