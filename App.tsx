@@ -84,6 +84,7 @@ function App(): React.JSX.Element {
 
   const validateValue = (value: string): string => {
     // - Remove invalid characters and filter multiple dots
+    value = value.replaceAll(',', '.');
     if (value == '.') return '0.';
     let validValue: string = value;
     if (value.split('.').length > 2) {
